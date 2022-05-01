@@ -6,4 +6,4 @@ spring:
         max-idle: 5
         min-idle: 2
     port: 6379
-    host: 127.0.0.1
+    host: redis-test.nrqdzu.ng.0001.apn2.cache.amazonaws.com
