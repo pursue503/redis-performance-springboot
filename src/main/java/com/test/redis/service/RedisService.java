@@ -21,7 +21,7 @@ public class RedisService {
     public void setUp() {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
 
-        for (int i=0; i<100000000; i++) {
+        for (int i=0; i<1000000; i++) {
             String keyAndValue = String.valueOf(i);
 
             valueOperations.set(keyAndValue, keyAndValue);
@@ -31,12 +31,16 @@ public class RedisService {
 
     public String get(String id) {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+
+        log.info("Redis Get ==> {}", id);
         return valueOperations.get(id);
     }
 
     public Set<String> keys() {
         ValueOperations<String, String > valueOperations = redisTemplate.opsForValue();
-        return redisTemplate.keys("*");
+        Set<String> strings = redisTemplate.keys("*");
+        log.info("redis keys count ==> {}", strings.size());
+        return strings;
     }
 
 }
